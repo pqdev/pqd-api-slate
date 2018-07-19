@@ -225,7 +225,10 @@
             <a href="#search" class="toc-h1 toc-link" data-title="Search">Search</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-search-results" class="toc-h2 toc-link" data-title="Get search results">Get search results</a>
+                    <a href="#get-search-results" class="toc-h2 toc-link" data-title="GET search results">GET search results</a>
+                  </li>
+                  <li>
+                    <a href="#post-search-results" class="toc-h2 toc-link" data-title="POST search results">POST search results</a>
                   </li>
               </ul>
           </li>
@@ -250,8 +253,8 @@
 You must replace <code>pqdtoken</code> with the bearer token provided to you.
 </aside>
 <h1 id='search'>Search</h1>
-<p>The search endpoint allows searching for content on the ProQuest Dialog platform by specifying an MQL query.  The search API supports multiple search options and same MQL syntax supported on the Dialog platform.  Each doc in a search response contains a Link field to the full document in XML format.</p>
-<h2 id='get-search-results'>Get search results</h2>
+<p>The search endpoint allows searching for content on the ProQuest Dialog platform by specifying an MQL query.  The search API supports multiple search options and the same MQL syntax supported on the Dialog platform.  Each doc in a search response contains a Link field to the full document in XML format.</p>
+<h2 id='get-search-results'>GET search results</h2>
 <blockquote>
 <p>Search response:</p>
 </blockquote>
@@ -327,16 +330,201 @@ You must replace <code>pqdtoken</code> with the bearer token provided to you.
 <td>The number of documents to skip before returning search results.  This facilitates paging through search results without returning a large list of documents at a time.</td>
 </tr>
 <tr>
+<td>sortOrder</td>
+<td>pubDateDescending</td>
+<td>No</td>
+<td>The sort order to use in the results returned.  pubDateDescending - in descending order by publication date.  pubDateAscending - in ascending order by publication date.  relevance - in order of relevance to the query.</td>
+</tr>
+<tr>
 <td>s1</td>
 <td>-</td>
 <td>No</td>
 <td>Should contain the MQL query for a set reference.  Any set references can be included as query parameters (s1, s2, s231, etc).</td>
+</tr>
+<tr>
+<td>includeDuplicates</td>
+<td>false</td>
+<td>No</td>
+<td>Specify whether or not to include duplicate documents in the results returned. (true/false)</td>
+</tr>
+<tr>
+<td>includeLemmatization</td>
+<td>false</td>
+<td>No</td>
+<td>Specify whether to automatically search terms with the same lemmatized stem (read</td>
+</tr>
+<tr>
+<td>includeUsUkSpellingVariants</td>
+<td>false</td>
+<td>No</td>
+<td>Specify whether to automatically search for US/UK spelling variations of the terms used in the query. (true/false)</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
 Remember — GET requests must still contain a correct Authorization header.
 </aside>
+<h2 id='post-search-results'>POST search results</h2>
+<blockquote>
+<p>Request body:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;searchRequest&gt;</span>
+    <span class="nt">&lt;search&gt;</span>
+        <span class="nt">&lt;query&gt;</span>ti(test) or s1<span class="nt">&lt;/query&gt;</span>
+        <span class="nt">&lt;databases&gt;</span>
+            <span class="nt">&lt;database&gt;</span>medlineprof<span class="nt">&lt;/database&gt;</span>
+            <span class="nt">&lt;database&gt;</span>embase<span class="nt">&lt;/database&gt;</span>
+        <span class="nt">&lt;/databases&gt;</span>
+        <span class="nt">&lt;set</span> <span class="na">id=</span><span class="s">"1"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;query&gt;</span>mesh.#("ammonium chloride")<span class="nt">&lt;/query&gt;</span>
+            <span class="nt">&lt;databases&gt;</span>
+                <span class="nt">&lt;database&gt;</span>medlineprof<span class="nt">&lt;/medlineprof&gt;</span>
+            <span class="nt">&lt;/databases&gt;</span>
+        <span class="nt">&lt;/set&gt;</span>
+        <span class="nt">&lt;options&gt;</span>
+            <span class="nt">&lt;includeLemmatization&gt;</span>true<span class="nt">&lt;/includeLemmatization&gt;</span>
+            <span class="nt">&lt;includeUsUkSpellingVariants&gt;</span>true<span class="nt">&lt;/includeUsUkSpellingVariants&gt;</span>
+            <span class="nt">&lt;includeDuplicates&gt;</span>true<span class="nt">&lt;/includeDuplicates&gt;</span>
+        <span class="nt">&lt;/options&gt;</span>
+    <span class="nt">&lt;/search&gt;</span>
+    <span class="nt">&lt;count&gt;</span>5<span class="nt">&lt;/count&gt;</span>
+    <span class="nt">&lt;offset&gt;</span>20<span class="nt">&lt;/offset&gt;</span>
+    <span class="nt">&lt;sortOrder&gt;</span>pubDateAscending<span class="nt">&lt;/sortOrder&gt;</span>
+<span class="nt">&lt;/searchRequest&gt;</span>
+</code></pre>
+<p>The preferred method for accessing the search API is to make a POST request.  This bypasses the maximum URL length imposed by some servers and browsers allowing for longer queries to be used.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST /search</code></p>
+<h3 id='schema-searchrequest'>Schema: searchRequest</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>search</td>
+<td>-</td>
+<td>Yes</td>
+<td>The structured search for which results will be returned.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>20</td>
+<td>No</td>
+<td>The number of documents to return in a single request.  We only support scrolling 4000 documents into search results (count + offset &lt;= 4000)</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>No</td>
+<td>The number of documents to skip before returning search results.  This facilitates paging through search results without returning a large list of documents at a time.</td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>pubDateDescending</td>
+<td>No</td>
+<td>The sort order to use in the results returned.  pubDateDescending - in descending order by publication date.  pubDateAscending - in ascending order by publication date.  relevance - in order of relevance to the query.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-search'>Schema: search</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>-</td>
+<td>Yes</td>
+<td>An MQL query used to perform a search.</td>
+</tr>
+<tr>
+<td>databases</td>
+<td>-</td>
+<td>Yes</td>
+<td>A non-zero list of database elements each one containing a database code (medlineprof/embase).  The top level list of databases must include all databases used in any search sets.</td>
+</tr>
+<tr>
+<td>set</td>
+<td>-</td>
+<td>No</td>
+<td>Any number of set elements can be included in the after the databases element.  This allows for the inclusion of an unlimited number of search sets.</td>
+</tr>
+<tr>
+<td>options</td>
+<td>-</td>
+<td>No</td>
+<td>A collection of search options that modify the number of documents returned by the search.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-set'>Schema: set</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Yes</td>
+<td>The numeric reference for the set.  So, if your query is: test and s1, then you should have a set element with an id of 1.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>query</td>
+<td>Yes</td>
+<td>An MQL query used for this set.</td>
+</tr>
+<tr>
+<td>databases</td>
+<td>No</td>
+<td>If included, a non-zero list of database elements each one containing a database code.  This filters the databases used for this set in the query.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-options'>Schema: options</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>includeLemmatization</td>
+<td>false</td>
+<td>No</td>
+<td>Specify whether to automatically search terms with the same lemmatized stem (read</td>
+</tr>
+<tr>
+<td>includeUsUkSpellingVariants</td>
+<td>false</td>
+<td>No</td>
+<td>Specify whether to automatically search for US/UK spelling variations of the terms used in the query. (true/false)</td>
+</tr>
+<tr>
+<td>includeDuplicates</td>
+<td>false</td>
+<td>No</td>
+<td>Specify whether or not to include duplicate documents in the results returned. (true/false)</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
