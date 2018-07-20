@@ -3,6 +3,7 @@ title: API Reference
 
 includes:
   - search
+  - thesaurus
   - errors
 
 search: true
