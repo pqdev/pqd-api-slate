@@ -233,6 +233,20 @@
               </ul>
           </li>
           <li>
+            <a href="#thesaurus" class="toc-h1 toc-link" data-title="Thesaurus">Thesaurus</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#discover-thesauri" class="toc-h2 toc-link" data-title="Discover thesauri">Discover thesauri</a>
+                  </li>
+                  <li>
+                    <a href="#search-thesaurus-terms" class="toc-h2 toc-link" data-title="Search thesaurus terms">Search thesaurus terms</a>
+                  </li>
+                  <li>
+                    <a href="#obtain-specific-thesaurus-term" class="toc-h2 toc-link" data-title="Obtain specific thesaurus term">Obtain specific thesaurus term</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
       </ul>
@@ -523,6 +537,220 @@ Remember — GET requests must still contain a correct Authorization header.
 <td>false</td>
 <td>No</td>
 <td>Specify whether or not to include duplicate documents in the results returned. (true/false)</td>
+</tr>
+</tbody></table>
+<h1 id='thesaurus'>Thesaurus</h1>
+<p>The thesaurus endpoint allows for the discovery of available thesauri for databases.  It allows searching the content of a thesaurus for preferred terms, synonyms, and thesaurus notes.</p>
+<h2 id='discover-thesauri'>Discover thesauri</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;thesaurusList&gt;</span>
+    <span class="nt">&lt;thesaurusName&gt;</span>medline2018_en<span class="nt">&lt;/thesaurusName&gt;</span>
+<span class="nt">&lt;/thesaurusList&gt;</span>
+</code></pre>
+<p>Discover available thesauri for a database or a set of databases.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /thesaurus/fordatabases/{databaselist}</code></p>
+<h3 id='url-template-parameters'>URL (template) Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>databaselist</td>
+<td>-</td>
+<td>Yes</td>
+<td>A comma delimited list of database codes (medlineprof/embase).</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — GET requests must still contain a correct Authorization header.
+</aside>
+<h2 id='search-thesaurus-terms'>Search thesaurus terms</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;searchResponse&gt;</span>
+    <span class="nt">&lt;TotalHits&gt;</span>158<span class="nt">&lt;/TotalHits&gt;</span>
+    <span class="nt">&lt;ResultSet&gt;</span>
+        <span class="nt">&lt;Entry&gt;</span>
+            <span class="nt">&lt;ID</span> <span class="na">product=</span><span class="s">"medline2018_en"</span> <span class="na">ord=</span><span class="s">"14981"</span><span class="nt">&gt;</span>medline2018_en_14981<span class="nt">&lt;/ID&gt;</span>
+            <span class="nt">&lt;Head&gt;</span>Blood<span class="nt">&lt;/Head&gt;</span>
+            <span class="nt">&lt;Paths&gt;</span>
+                <span class="nt">&lt;Path</span> <span class="na">tn=</span><span class="s">"A.15.145"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"6944"</span><span class="nt">&gt;</span>Anatomy<span class="nt">&lt;/Term&gt;</span>
+                    <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"49543"</span><span class="nt">&gt;</span>Hemic and Immune Systems<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;/Path&gt;</span>
+                <span class="nt">&lt;Path</span> <span class="na">tn=</span><span class="s">"A.12.207.152"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"6944"</span><span class="nt">&gt;</span>Anatomy<span class="nt">&lt;/Term&gt;</span>
+                    <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"42271"</span><span class="nt">&gt;</span>Fluids and Secretions<span class="nt">&lt;/Term&gt;</span>
+                    <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"15269"</span><span class="nt">&gt;</span>Body Fluids<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;/Path&gt;</span>
+            <span class="nt">&lt;/Paths&gt;</span>
+            <span class="nt">&lt;BT&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"15269"</span><span class="nt">&gt;</span>Body Fluids<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"49543"</span><span class="nt">&gt;</span>Hemic and Immune Systems<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/BT&gt;</span>
+            <span class="nt">&lt;NT&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"14993"</span> <span class="na">tn=</span><span class="s">"A.15.145"</span><span class="nt">&gt;</span>Blood Cells<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"41437"</span> <span class="na">tn=</span><span class="s">"A.12.207.152"</span><span class="nt">&gt;</span>Fetal Blood<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"41437"</span> <span class="na">tn=</span><span class="s">"A.15.145"</span><span class="nt">&gt;</span>Fetal Blood<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"84757"</span> <span class="na">tn=</span><span class="s">"A.15.145"</span><span class="nt">&gt;</span>Plasma<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"84757"</span> <span class="na">tn=</span><span class="s">"A.12.207.152"</span><span class="nt">&gt;</span>Plasma<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"98451"</span> <span class="na">tn=</span><span class="s">"A.15.145"</span><span class="nt">&gt;</span>Serum<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"98451"</span> <span class="na">tn=</span><span class="s">"A.12.207.152"</span><span class="nt">&gt;</span>Serum<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/NT&gt;</span>
+            <span class="nt">&lt;RT&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"49466"</span><span class="nt">&gt;</span>Hematopoiesis<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/RT&gt;</span>
+            <span class="nt">&lt;SN&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"0"</span><span class="nt">&gt;</span>The body fluid that circulates in the vascular system (BLOOD VESSELS). Whole blood includes PLASMA and BLOOD CELLS.<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/SN&gt;</span>
+            <span class="nt">&lt;AQ&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"86"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"DG"</span><span class="nt">&gt;</span>diagnostic imaging<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"91"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"DE"</span><span class="nt">&gt;</span>drug effects<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"148"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"IM"</span><span class="nt">&gt;</span>immunology<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"177"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"ME"</span><span class="nt">&gt;</span>metabolism<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"181"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"MI"</span><span class="nt">&gt;</span>microbiology<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"205"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"PS"</span><span class="nt">&gt;</span>parasitology<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"244"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"RE"</span><span class="nt">&gt;</span>radiation effects<span class="nt">&lt;/Term&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"303"</span> <span class="na">product=</span><span class="s">"medline2018_qualifiers_en"</span> <span class="na">alt=</span><span class="s">"VI"</span><span class="nt">&gt;</span>virology<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/AQ&gt;</span>
+            <span class="nt">&lt;DATE&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"0"</span><span class="nt">&gt;</span>1999<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/DATE&gt;</span>
+            <span class="nt">&lt;NOTE&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"0"</span><span class="nt">&gt;</span>Annotation: general only as a substance: prefer / blood with higher animals, substances <span class="err">&amp;</span> diseases: Manual 19.7+, 19.8.10; not for hemodynamics: Manual 23.28, 23.29; reinfusion = BLOOD TRANSFUSION, AUTOLOGOUS; venous blood: coordinate BLOOD + VEINS or specific vein but do not index here for routine blood samples; arterial blood: coordinate BLOOD + ARTERIES or specific artery but only if the arterial aspect is significant; "blood picture" = probably BLOOD CELLS or BLOOD CELL COUNT; "blood clot": physiol clot or clotting = BLOOD COAGULATION, pathologic clot or clotting = THROMBOSIS or EMBOLISM<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/NOTE&gt;</span>
+            <span class="nt">&lt;EXPLODE&gt;</span>14981 15269 42271 49543 6944 A A.12 A.12.207 A.12.207.152 A.15 A.15.145<span class="nt">&lt;/EXPLODE&gt;</span>
+        <span class="nt">&lt;/Entry&gt;</span>
+        <span class="nt">&lt;Entry&gt;</span>
+            <span class="nt">&lt;ID</span> <span class="na">product=</span><span class="s">"medline2018_en"</span> <span class="na">ord=</span><span class="s">"14982"</span><span class="nt">&gt;</span>medline2018_en_14982<span class="nt">&lt;/ID&gt;</span>
+            <span class="nt">&lt;Head&gt;</span>Blood Alcohol Concentration<span class="nt">&lt;/Head&gt;</span>
+            <span class="nt">&lt;USE&gt;</span>
+                <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"14983"</span><span class="nt">&gt;</span>Blood Alcohol Content<span class="nt">&lt;/Term&gt;</span>
+            <span class="nt">&lt;/USE&gt;</span>
+            <span class="nt">&lt;EXPLODE&gt;</span>14982 <span class="nt">&lt;/EXPLODE&gt;</span>
+        <span class="nt">&lt;/Entry&gt;</span>
+    <span class="nt">&lt;/ResultSet&gt;</span>
+<span class="nt">&lt;/searchResponse&gt;</span>
+</code></pre>
+<p>Search for any thesaurus terms that match the provided query.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /thesaurus/{thesaurusName}/beginswith/{query}</code>
+<code>GET /thesaurus/{thesaurusName}/contains/{query}</code></p>
+<h3 id='url-template-parameters-2'>URL (template) Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>thesaurusName</td>
+<td>-</td>
+<td>Yes</td>
+<td>A thesaurus name as discovered through the /thesaurus/fordatabases/{databaselist} endpoint.</td>
+</tr>
+<tr>
+<td>query</td>
+<td>-</td>
+<td>Yes</td>
+<td>Description (need to figure out restrictions as well, special characters are likely not handled well)</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>offset</td>
+<td>0</td>
+<td>No</td>
+<td>How many result terms to skip in the search response. This facilitates paging through thesaurus term search results.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>50?</td>
+<td>No</td>
+<td>How many result terms to include in the response.  The platform service limit is very high or unlimited, we should probably consider how many we want to allow.</td>
+</tr>
+</tbody></table>
+<h2 id='obtain-specific-thesaurus-term'>Obtain specific thesaurus term</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;Entry&gt;</span>
+    <span class="nt">&lt;ID</span> <span class="na">product=</span><span class="s">"medline2018_en"</span> <span class="na">ord=</span><span class="s">"6944"</span><span class="nt">&gt;</span>medline2018_en_6944<span class="nt">&lt;/ID&gt;</span>
+    <span class="nt">&lt;Head&gt;</span>Anatomy<span class="nt">&lt;/Head&gt;</span>
+    <span class="nt">&lt;Paths&gt;</span>
+        <span class="nt">&lt;Path</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/Paths&gt;</span>
+    <span class="nt">&lt;BT&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"0"</span><span class="nt">&gt;</span>thesaurus_root<span class="nt">&lt;/Term&gt;</span>
+    <span class="nt">&lt;/BT&gt;</span>
+    <span class="nt">&lt;NT&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"7533"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Animal Structures<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"12318"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Bacterial Structures<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"15292"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Body Regions<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"19015"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Cardiovascular System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"20759"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Cells<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"32412"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Digestive System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"36491"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Embryonic Structures<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"37010"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Endocrine System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"42271"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Fluids and Secretions<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"43580"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Fungal Structures<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"49543"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Hemic and Immune Systems<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"56860"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Integumentary System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"70831"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Musculoskeletal System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"73417"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Nervous System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"84706"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Plant Structures<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"94082"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Respiratory System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"97969"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Sense Organs<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"102929"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Stomatognathic System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"108235"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Tissues<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"112530"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Urogenital System<span class="nt">&lt;/Term&gt;</span>
+        <span class="nt">&lt;Term</span> <span class="na">ord=</span><span class="s">"114296"</span> <span class="na">tn=</span><span class="s">"A"</span><span class="nt">&gt;</span>Viral Structures<span class="nt">&lt;/Term&gt;</span>
+    <span class="nt">&lt;/NT&gt;</span>
+    <span class="nt">&lt;EXPLODE&gt;</span>6944 A <span class="nt">&lt;/EXPLODE&gt;</span>
+<span class="nt">&lt;/Entry&gt;</span>
+</code></pre>
+<p>Obtain an thesaurus term entry by matching its head term exactly.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET /thesaurus/{thesaurusName}/term/{query}</code></p>
+<h3 id='url-template-parameters-3'>URL (template) Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>thesaurusName</td>
+<td>-</td>
+<td>Yes</td>
+<td>A thesaurus name as discovered through the /thesaurus/fordatabases/{databaselist} endpoint.</td>
+</tr>
+<tr>
+<td>query</td>
+<td>-</td>
+<td>Yes</td>
+<td>The exact name of a thesaurus head term.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
