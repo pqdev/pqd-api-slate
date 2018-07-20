@@ -104,6 +104,7 @@ Search for any thesaurus terms that match the provided query.
 ### HTTP Request
 
 `GET /thesaurus/{thesaurusName}/beginswith/{query}`
+
 `GET /thesaurus/{thesaurusName}/contains/{query}`
 
 ### URL (template) Parameters
