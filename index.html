@@ -248,6 +248,14 @@
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#generic-errors" class="toc-h2 toc-link" data-title="Generic Errors">Generic Errors</a>
+                  </li>
+                  <li>
+                    <a href="#structured-errors" class="toc-h2 toc-link" data-title="Structured Errors">Structured Errors</a>
+                  </li>
+              </ul>
           </li>
       </ul>
     </div>
@@ -754,16 +762,12 @@ Remember — GET requests must still contain a correct Authorization header.
 <td>The exact name of a thesaurus head term.</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<h1 id='errors'>Errors</h1><h2 id='generic-errors'>Generic Errors</h2>
+<p>You may see any of the following HTTP error codes returned by the ProQuest Dialog API.</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>HTTP Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
@@ -773,35 +777,15 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Unauthorized -- Your bearer token is unspecified or invalid.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified resource could not be found. Possibly an invalid thesaurus name or alert id.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Method Not Allowed -- You tried to access an endpoint with an invalid method.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -810,6 +794,104 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <tr>
 <td>503</td>
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+<h2 id='structured-errors'>Structured Errors</h2>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;error&gt;</span>
+    <span class="nt">&lt;debugMessage&gt;</span>Problem encountered parsing query<span class="nt">&lt;/debugMessage&gt;</span>
+    <span class="nt">&lt;errorCode&gt;</span>5000<span class="nt">&lt;/errorCode&gt;</span>
+    <span class="nt">&lt;parameters&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"input"</span><span class="nt">&gt;</span>or <span class="nt">&lt;/param&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"startIndex"</span><span class="nt">&gt;</span>5<span class="nt">&lt;/param&gt;</span>
+    <span class="nt">&lt;/parameters&gt;</span>
+<span class="nt">&lt;/error&gt;</span>
+</code></pre>
+<p>An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.</p>
+<h3 id='codes'>Codes</h3>
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1000</td>
+<td>You may see this error code displayed when your bearer token is not valid.</td>
+</tr>
+<tr>
+<td>1200</td>
+<td>The account identified by your bearer token does not have any active subscriptions and cannot be used.</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>Your MQL search could not be parsed.  Additional structured error parameters should identify the area of the query that could not be parsed.</td>
+</tr>
+<tr>
+<td>5100</td>
+<td>Your MQL search contains an MQL operator that is not defined.  Additional structured error parameters should identify the area of the query that contains the invalid mnemonic operator.</td>
+</tr>
+<tr>
+<td>5500</td>
+<td>You are attempting to scroll too far into the search results. We can only supprt returning the first 4000 documents of a search. offset + count &lt;= 4000</td>
+</tr>
+<tr>
+<td>6000</td>
+<td>There was an error interpreting your search.  Please check any additional structured error parameters.</td>
+</tr>
+<tr>
+<td>6005</td>
+<td>There is a reference to set in the MQL query that is not supplied as a separate set in the search request.  Additional structured error parameters should identify the reference and its location.</td>
+</tr>
+<tr>
+<td>6010</td>
+<td>Your MQL search contains a mnemonic that is not defined. The mnemonic and its location should be specified in the error parameters.</td>
+</tr>
+<tr>
+<td>6015</td>
+<td>Your MQL search uses a mnemonic operator that is not compatible with the mnemonic on which it operates.  The operator and its location should be specified in the error parameters.</td>
+</tr>
+<tr>
+<td>6020</td>
+<td>A mnemonic cannot be used in a given part of your MQL search.  The mnemonic and its location should be specified in the error parameters.</td>
+</tr>
+<tr>
+<td>6025</td>
+<td>Proximity operaters (near/pre) cannot be used in a particular part of your search.  The location of the operator should be specified in the error parameters.</td>
+</tr>
+<tr>
+<td>6100</td>
+<td>The given type of input cannot be used with a particular mnemonic.  Some mnemonics expect dates or numeric ranges.  The expected type of input and the mnemonic should be specified in the error parameters.</td>
+</tr>
+<tr>
+<td>7100</td>
+<td>The top level database specification does not contain all of the databases used in the set references supplied.  Alternatively, you may be using a database code with the FDB mnemonic that is not part of your database selections.</td>
+</tr>
+<tr>
+<td>7200</td>
+<td>You are using a database code that does not exist or is not part of your subscription.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-error'>Schema: error</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>debugMessage</td>
+<td>A human readable hint to the problem.  This could be specific or generic.  It is not intended to fully identify the problem or be consumed by users.</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>Numeric error code as listed above.</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>If present, a list of param elements that contain a name attribute and a value.  These describe any actual details of the semantic error.</td>
 </tr>
 </tbody></table>
 
