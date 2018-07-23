@@ -263,6 +263,9 @@
                   <li>
                     <a href="#structured-errors" class="toc-h2 toc-link" data-title="Structured Errors">Structured Errors</a>
                   </li>
+                  <li>
+                    <a href="#structured-error-codes" class="toc-h2 toc-link" data-title="Structured Error Codes">Structured Error Codes</a>
+                  </li>
               </ul>
           </li>
       </ul>
@@ -999,7 +1002,27 @@ Remember — GET requests must still contain a correct Authorization header.
 <span class="nt">&lt;/error&gt;</span>
 </code></pre>
 <p>An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.</p>
-<h3 id='codes'>Codes</h3>
+<h3 id='schema-error'>Schema: error</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>debugMessage</td>
+<td>A human readable hint to the problem.  This could be specific or generic.  It is not intended to fully identify the problem or be consumed by users.</td>
+</tr>
+<tr>
+<td>errorCode</td>
+<td>Numeric error code as listed above.</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>If present, a list of param elements that contain a name attribute and a value.  These describe any actual details of the semantic error.</td>
+</tr>
+</tbody></table>
+<h2 id='structured-error-codes'>Structured Error Codes</h2>
 <table><thead>
 <tr>
 <th>Error Code</th>
@@ -1061,26 +1084,6 @@ Remember — GET requests must still contain a correct Authorization header.
 <tr>
 <td>7200</td>
 <td>You are using a database code that does not exist or is not part of your subscription.</td>
-</tr>
-</tbody></table>
-<h3 id='schema-error'>Schema: error</h3>
-<table><thead>
-<tr>
-<th>Element</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>debugMessage</td>
-<td>A human readable hint to the problem.  This could be specific or generic.  It is not intended to fully identify the problem or be consumed by users.</td>
-</tr>
-<tr>
-<td>errorCode</td>
-<td>Numeric error code as listed above.</td>
-</tr>
-<tr>
-<td>parameters</td>
-<td>If present, a list of param elements that contain a name attribute and a value.  These describe any actual details of the semantic error.</td>
 </tr>
 </tbody></table>
 
