@@ -30,7 +30,15 @@ HTTP Code | Meaning
 
 An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.
 
-### Codes
+### Schema: error
+
+Element | Description
+------- | -----------
+debugMessage | A human readable hint to the problem.  This could be specific or generic.  It is not intended to fully identify the problem or be consumed by users.
+errorCode | Numeric error code as listed above.
+parameters | If present, a list of param elements that contain a name attribute and a value.  These describe any actual details of the semantic error.
+
+## Structured Error Codes
 
 Error Code | Meaning
 ---------- | -------
@@ -48,11 +56,3 @@ Error Code | Meaning
 6100 | The given type of input cannot be used with a particular mnemonic.  Some mnemonics expect dates or numeric ranges.  The expected type of input and the mnemonic should be specified in the error parameters.
 7100 | The top level database specification does not contain all of the databases used in the set references supplied.  Alternatively, you may be using a database code with the FDB mnemonic that is not part of your database selections.
 7200 | You are using a database code that does not exist or is not part of your subscription.
-
-### Schema: error
-
-Element | Description
-------- | -----------
-debugMessage | A human readable hint to the problem.  This could be specific or generic.  It is not intended to fully identify the problem or be consumed by users.
-errorCode | Numeric error code as listed above.
-parameters | If present, a list of param elements that contain a name attribute and a value.  These describe any actual details of the semantic error.
