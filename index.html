@@ -247,6 +247,14 @@
               </ul>
           </li>
           <li>
+            <a href="#limiters" class="toc-h1 toc-link" data-title="Limiters">Limiters</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#discover-limiters" class="toc-h2 toc-link" data-title="Discover limiters">Discover limiters</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
               <ul class="toc-list-h2">
                   <li>
@@ -762,7 +770,188 @@ Remember — GET requests must still contain a correct Authorization header.
 <td>The exact name of a thesaurus head term.</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1><h2 id='generic-errors'>Generic Errors</h2>
+<h1 id='limiters'>Limiters</h1>
+<p>The limiters endpoint allows for the discovery of available limiters for databases.  It further facilitates determining search limiter values and constructing a search based on limiter values.</p>
+<h2 id='discover-limiters'>Discover limiters</h2>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight xml tab-xml"><code><span class="nt">&lt;limiters&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"Abstract"</span> <span class="na">type=</span><span class="s">"simple"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Abstract Included<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Yes"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>abany(yes)<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"Humans"</span> <span class="na">type=</span><span class="s">"simple"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Humans<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Yes"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>human(yes)<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"Animals"</span> <span class="na">type=</span><span class="s">"simple"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Animals<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Yes"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>animal(yes)<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"EmbaseClinicalTrials"</span> <span class="na">type=</span><span class="s">"simple"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Clinical Trials<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Yes"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>(EMB.EXACT.EXPLODE("CLINICAL TRIAL") OR EMB.EXACT.EXPLODE("CLINICAL TRIAL (TOPIC)") OR EMB("CLINICAL TRIAL*")) OR (dtype("CLINICAL TRIAL*" or "CONTROLLED CLINICAL TRIAL" or "MULTICENTER STUDY" or "RANDOMIZED CONTROLLED TRIAL" or "EQUIVALENCE TRIAL") or mesh.EXACT.EXPLODE("Clinical Trials as Topic"))<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"PublicationDate"</span> <span class="na">type=</span><span class="s">"date"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Publication Date<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;mnemonic&gt;</span>pd<span class="nt">&lt;/mnemonic&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"embSubject"</span> <span class="na">type=</span><span class="s">"field"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Emtree Subject<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;mnemonic&gt;</span>emb<span class="nt">&lt;/mnemonic&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"casRegistryNumber"</span> <span class="na">type=</span><span class="s">"field"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>CAS Registry Number<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;mnemonic&gt;</span>rn<span class="nt">&lt;/mnemonic&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"EmbaseDocumentStatus"</span> <span class="na">type=</span><span class="s">"complex"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Embase Document Status<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"ArticleInPress"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Article in Press<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>dstat.exact("Article in Press")<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"InProcess"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>In Process<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>dstat.exact("In Process")<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Embase"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Embase<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>dstat.exact("Embase")<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"MEDLINE"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>MEDLINE<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>dstat.exact("MEDLINE")<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+    <span class="nt">&lt;limiter</span> <span class="na">name=</span><span class="s">"AgeGroupEmbase"</span> <span class="na">type=</span><span class="s">"complex"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Age Group<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Adult"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Adult<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>emb.exact("adult")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Aged"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Aged<span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;mql&gt;</span>emb.exact("aged")<span class="nt">&lt;/mql&gt;</span>
+                <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"AgedHospitalPatient"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Aged Hospital Patient<span class="nt">&lt;/label&gt;</span>
+                    <span class="nt">&lt;mql&gt;</span>emb.exact("aged hospital patient")<span class="nt">&lt;/mql&gt;</span>
+                <span class="nt">&lt;/option&gt;</span>
+                <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"InstitutionalizedElderly"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Institutionalized Elderly<span class="nt">&lt;/label&gt;</span>
+                    <span class="nt">&lt;mql&gt;</span>emb.exact("institutionalized elderly")<span class="nt">&lt;/mql&gt;</span>
+                <span class="nt">&lt;/option&gt;</span>
+                <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"VeryElderly"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Very Elderly<span class="nt">&lt;/label&gt;</span>
+                    <span class="nt">&lt;mql&gt;</span>emb.exact("very elderly")<span class="nt">&lt;/mql&gt;</span>
+                <span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"InstitutionalizedAdult"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Institutionalized Adult<span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;mql&gt;</span>emb.exact("institutionalized adult")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"MiddleAged"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Middle Aged<span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;mql&gt;</span>emb.exact("middle aged")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"YoungAdult"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Young Adult<span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;mql&gt;</span>emb.exact("young adult")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Juvenile"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Juvenile<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>emb.exact("juvenile")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Adolescent"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Adolescent<span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;mql&gt;</span>emb.exact("adolescent")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;/option&gt;</span>
+            <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Child"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Child<span class="nt">&lt;/label&gt;</span>
+                <span class="nt">&lt;mql&gt;</span>emb.exact("child")<span class="nt">&lt;/mql&gt;</span>
+            <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+        <span class="nt">&lt;option</span> <span class="na">name=</span><span class="s">"Embryo"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;label</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>Embryo<span class="nt">&lt;/label&gt;</span>
+            <span class="nt">&lt;mql&gt;</span>emb.exact("embryo")<span class="nt">&lt;/mql&gt;</span>
+        <span class="nt">&lt;/option&gt;</span>
+    <span class="nt">&lt;/limiter&gt;</span>
+<span class="nt">&lt;/limiters&gt;</span>
+</code></pre>
+<p>Discover available limiters for a database or a set of databases.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /limiter/fordatabases/{databaseList}</code></p>
+<h3 id='url-template-parameters'>URL (template) Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>databaseList</td>
+<td>-</td>
+<td>Yes</td>
+<td>A comma delimited list of database codes (medlineprof/embase).</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — GET requests must still contain a correct Authorization header.
+</aside>
+<h3 id='schema-limiter'>Schema: limiter</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Yes</td>
+<td>The unique name (identifier) of the limiter.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>Yes</td>
+<td>The generic type of limiter.  This can help clients to decide how to handle the specific limiter details.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>label</td>
+<td>No</td>
+<td>Zero or more label elements naming the limiter in various languages.</td>
+</tr>
+<tr>
+<td>mnemonic</td>
+<td>No</td>
+<td>What mnemonic to use to search this limiter.</td>
+</tr>
+<tr>
+<td>option</td>
+<td>No</td>
+<td>Zero or more option elements describing the various options for this limiter.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-label'>Schema: label</h3><h3 id='schema-option'>Schema: option</h3><h1 id='errors'>Errors</h1><h2 id='generic-errors'>Generic Errors</h2>
 <p>You may see any of the following HTTP error codes returned by the ProQuest Dialog API.</p>
 
 <table><thead>
