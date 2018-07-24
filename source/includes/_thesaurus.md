@@ -34,68 +34,60 @@ Remember — GET requests must still contain a correct Authorization header.
 
 ```xml
 <searchResponse>
-    <TotalHits>158</TotalHits>
-    <ResultSet>
-        <Entry>
-            <ID product="medline2018_en" ord="14981">medline2018_en_14981</ID>
-            <Head>Blood</Head>
-            <Paths>
-                <Path tn="A.15.145">
-                    <Term ord="6944">Anatomy</Term>
-                    <Term ord="49543">Hemic and Immune Systems</Term>
-                </Path>
-                <Path tn="A.12.207.152">
-                    <Term ord="6944">Anatomy</Term>
-                    <Term ord="42271">Fluids and Secretions</Term>
-                    <Term ord="15269">Body Fluids</Term>
-                </Path>
-            </Paths>
-            <BT>
-                <Term ord="15269">Body Fluids</Term>
-                <Term ord="49543">Hemic and Immune Systems</Term>
-            </BT>
-            <NT>
-                <Term ord="14993" tn="A.15.145">Blood Cells</Term>
-                <Term ord="41437" tn="A.12.207.152">Fetal Blood</Term>
-                <Term ord="41437" tn="A.15.145">Fetal Blood</Term>
-                <Term ord="84757" tn="A.15.145">Plasma</Term>
-                <Term ord="84757" tn="A.12.207.152">Plasma</Term>
-                <Term ord="98451" tn="A.15.145">Serum</Term>
-                <Term ord="98451" tn="A.12.207.152">Serum</Term>
-            </NT>
-            <RT>
-                <Term ord="49466">Hematopoiesis</Term>
-            </RT>
-            <SN>
-                <Term ord="0">The body fluid that circulates in the vascular system (BLOOD VESSELS). Whole blood includes PLASMA and BLOOD CELLS.</Term>
-            </SN>
-            <AQ>
-                <Term ord="86" product="medline2018_qualifiers_en" alt="DG">diagnostic imaging</Term>
-                <Term ord="91" product="medline2018_qualifiers_en" alt="DE">drug effects</Term>
-                <Term ord="148" product="medline2018_qualifiers_en" alt="IM">immunology</Term>
-                <Term ord="177" product="medline2018_qualifiers_en" alt="ME">metabolism</Term>
-                <Term ord="181" product="medline2018_qualifiers_en" alt="MI">microbiology</Term>
-                <Term ord="205" product="medline2018_qualifiers_en" alt="PS">parasitology</Term>
-                <Term ord="244" product="medline2018_qualifiers_en" alt="RE">radiation effects</Term>
-                <Term ord="303" product="medline2018_qualifiers_en" alt="VI">virology</Term>
-            </AQ>
-            <DATE>
-                <Term ord="0">1999</Term>
-            </DATE>
-            <NOTE>
-                <Term ord="0">Annotation: general only as a substance: prefer / blood with higher animals, substances & diseases: Manual 19.7+, 19.8.10; not for hemodynamics: Manual 23.28, 23.29; reinfusion = BLOOD TRANSFUSION, AUTOLOGOUS; venous blood: coordinate BLOOD + VEINS or specific vein but do not index here for routine blood samples; arterial blood: coordinate BLOOD + ARTERIES or specific artery but only if the arterial aspect is significant; "blood picture" = probably BLOOD CELLS or BLOOD CELL COUNT; "blood clot": physiol clot or clotting = BLOOD COAGULATION, pathologic clot or clotting = THROMBOSIS or EMBOLISM</Term>
-            </NOTE>
-            <EXPLODE>14981 15269 42271 49543 6944 A A.12 A.12.207 A.12.207.152 A.15 A.15.145</EXPLODE>
-        </Entry>
-        <Entry>
-            <ID product="medline2018_en" ord="14982">medline2018_en_14982</ID>
-            <Head>Blood Alcohol Concentration</Head>
-            <USE>
-                <Term ord="14983">Blood Alcohol Content</Term>
-            </USE>
-            <EXPLODE>14982 </EXPLODE>
-        </Entry>
-    </ResultSet>
+    <totalHits>158</totalHits>
+    <resultSet>
+        <entry>
+            <id product="medline2018_en" ord="14981">medline2018_en_14981</id>
+            <head>Blood</head>
+            <paths>
+                <path tn="A.15.145">
+                    <term ord="6944">Anatomy</term>
+                    <term ord="49543">Hemic and Immune Systems</term>
+                </path>
+                <path tn="A.12.207.152">
+                    <term ord="6944">Anatomy</term>
+                    <term ord="42271">Fluids and Secretions</term>
+                    <term ord="15269">Body Fluids</term>
+                </path>
+            </paths>
+            <broader>
+                <term ord="15269">Body Fluids</term>
+                <term ord="49543">Hemic and Immune Systems</term>
+            </broader>
+            <narrower>
+                <term ord="14993" tn="A.15.145">Blood Cells</term>
+                <term ord="41437" tn="A.12.207.152">Fetal Blood</term>
+                <term ord="41437" tn="A.15.145">Fetal Blood</term>
+                <term ord="84757" tn="A.15.145">Plasma</term>
+                <term ord="84757" tn="A.12.207.152">Plasma</term>
+                <term ord="98451" tn="A.15.145">Serum</term>
+                <term ord="98451" tn="A.12.207.152">Serum</term>
+            </narrower>
+            <related>
+                <term ord="49466">Hematopoiesis</term>
+            </related>
+            <scopeNote>The body fluid that circulates in the vascular system (BLOOD VESSELS). Whole blood includes PLASMA and BLOOD CELLS.</scopeNote>
+            <allowableQualifiers>
+                <term ord="86" product="medline2018_qualifiers_en" alt="DG">diagnostic imaging</term>
+                <term ord="91" product="medline2018_qualifiers_en" alt="DE">drug effects</term>
+                <term ord="148" product="medline2018_qualifiers_en" alt="IM">immunology</term>
+                <term ord="177" product="medline2018_qualifiers_en" alt="ME">metabolism</term>
+                <term ord="181" product="medline2018_qualifiers_en" alt="MI">microbiology</term>
+                <term ord="205" product="medline2018_qualifiers_en" alt="PS">parasitology</term>
+                <term ord="244" product="medline2018_qualifiers_en" alt="RE">radiation effects</term>
+                <term ord="303" product="medline2018_qualifiers_en" alt="VI">virology</term>
+            </allowableQualifiers>
+            <creationYear>1999</creationYear>
+            <note>Annotation: general only as a substance: prefer / blood with higher animals, substances & diseases: Manual 19.7+, 19.8.10; not for hemodynamics: Manual 23.28, 23.29; reinfusion = BLOOD TRANSFUSION, AUTOLOGOUS; venous blood: coordinate BLOOD + VEINS or specific vein but do not index here for routine blood samples; arterial blood: coordinate BLOOD + ARTERIES or specific artery but only if the arterial aspect is significant; "blood picture" = probably BLOOD CELLS or BLOOD CELL COUNT; "blood clot": physiol clot or clotting = BLOOD COAGULATION, pathologic clot or clotting = THROMBOSIS or EMBOLISM</note>
+        </entry>
+        <entry>
+            <id product="medline2018_en" ord="14982">medline2018_en_14982</id>
+            <head>Blood Alcohol Concentration</head>
+            <use>
+                <term ord="14983">Blood Alcohol Content</term>
+            </use>
+        </entry>
+    </resultSet>
 </searchResponse>
 ```
 
@@ -126,40 +118,39 @@ count | 50? | No | How many result terms to include in the response.  The platfo
 > Response
 
 ```xml
-<Entry>
-    <ID product="medline2018_en" ord="6944">medline2018_en_6944</ID>
-    <Head>Anatomy</Head>
-    <Paths>
-        <Path tn="A"/>
-    </Paths>
-    <BT>
-        <Term ord="0">thesaurus_root</Term>
-    </BT>
-    <NT>
-        <Term ord="7533" tn="A">Animal Structures</Term>
-        <Term ord="12318" tn="A">Bacterial Structures</Term>
-        <Term ord="15292" tn="A">Body Regions</Term>
-        <Term ord="19015" tn="A">Cardiovascular System</Term>
-        <Term ord="20759" tn="A">Cells</Term>
-        <Term ord="32412" tn="A">Digestive System</Term>
-        <Term ord="36491" tn="A">Embryonic Structures</Term>
-        <Term ord="37010" tn="A">Endocrine System</Term>
-        <Term ord="42271" tn="A">Fluids and Secretions</Term>
-        <Term ord="43580" tn="A">Fungal Structures</Term>
-        <Term ord="49543" tn="A">Hemic and Immune Systems</Term>
-        <Term ord="56860" tn="A">Integumentary System</Term>
-        <Term ord="70831" tn="A">Musculoskeletal System</Term>
-        <Term ord="73417" tn="A">Nervous System</Term>
-        <Term ord="84706" tn="A">Plant Structures</Term>
-        <Term ord="94082" tn="A">Respiratory System</Term>
-        <Term ord="97969" tn="A">Sense Organs</Term>
-        <Term ord="102929" tn="A">Stomatognathic System</Term>
-        <Term ord="108235" tn="A">Tissues</Term>
-        <Term ord="112530" tn="A">Urogenital System</Term>
-        <Term ord="114296" tn="A">Viral Structures</Term>
-    </NT>
-    <EXPLODE>6944 A </EXPLODE>
-</Entry>
+<entry>
+    <id product="medline2018_en" ord="6944">medline2018_en_6944</id>
+    <head>Anatomy</head>
+    <paths>
+        <path tn="A"/>
+    </paths>
+    <broader>
+        <term ord="0">thesaurus_root</term>
+    </broader>
+    <narrower>
+        <term ord="7533" tn="A">Animal Structures</term>
+        <term ord="12318" tn="A">Bacterial Structures</term>
+        <term ord="15292" tn="A">Body Regions</term>
+        <term ord="19015" tn="A">Cardiovascular System</term>
+        <term ord="20759" tn="A">Cells</term>
+        <term ord="32412" tn="A">Digestive System</term>
+        <term ord="36491" tn="A">Embryonic Structures</term>
+        <term ord="37010" tn="A">Endocrine System</term>
+        <term ord="42271" tn="A">Fluids and Secretions</term>
+        <term ord="43580" tn="A">Fungal Structures</term>
+        <term ord="49543" tn="A">Hemic and Immune Systems</term>
+        <term ord="56860" tn="A">Integumentary System</term>
+        <term ord="70831" tn="A">Musculoskeletal System</term>
+        <term ord="73417" tn="A">Nervous System</term>
+        <term ord="84706" tn="A">Plant Structures</term>
+        <term ord="94082" tn="A">Respiratory System</term>
+        <term ord="97969" tn="A">Sense Organs</term>
+        <term ord="102929" tn="A">Stomatognathic System</term>
+        <term ord="108235" tn="A">Tissues</term>
+        <term ord="112530" tn="A">Urogenital System</term>
+        <term ord="114296" tn="A">Viral Structures</term>
+    </narrower>
+</entry>
 ```
 
 Obtain an thesaurus term entry by matching its head term exactly.
