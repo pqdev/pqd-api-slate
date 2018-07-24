@@ -113,6 +113,13 @@ Parameter | Default | Required | Description
 offset | 0 | No | How many result terms to skip in the search response. This facilitates paging through thesaurus term search results.
 count | 50? | No | How many result terms to include in the response.  The platform service limit is very high or unlimited, we should probably consider how many we want to allow.
 
+### Schema: searchResponse
+
+Element | Required | Description
+------- | -------- | -----------
+totalHits | Yes | The number of thesaurus terms that match the query.
+resultSet | No | An element container for a number of thesaurus entries.
+
 ## Obtain specific thesaurus term
 
 > Response
@@ -165,3 +172,42 @@ Parameter | Default | Required | Description
 --------- | ------- | -------- | -----------
 thesaurusName | - | Yes | A thesaurus name as discovered through the /thesaurus/fordatabases/{databaselist} endpoint.
 query | - | Yes | The exact name of a thesaurus head term.
+
+### Schema: entry
+
+Element | Required | Description
+------- | -------- | -----------
+id | Yes | An id element defining a compound unique identifier for the entry.
+head | Yes | A label defining the complete head phrase for the entry. (Label type)
+paths | No | A container element for multiple path elements.
+broader | No | A container element listing zero or more broader thesaurus terms as term elements.
+narrower | No | A container element listing zero or more narrower thesaurus terms as term elements.
+related | No | A container element listing zero or more related thesaurus terms as term elements.
+useFor | No | A container element listing zero or more thesaurus terms for which this entry should be used instead.
+use | No | A container element listing zero or more thesaurus terms that should be used instead of the current entry.
+scopeNote | No | Zero or more scopeNote elements compose the scope notes for a thesaurus entry.
+historicalNote | No | Zero or more historicalNote elements compose the historical notes for a thesaurus entry.
+classificationCode | No | Zero or more classificationCode elements define the classification codes for a thesaurus entry.
+editorialCode | No | Zero or more editorialCode elements define the editorial codes for a thesaurus entry.
+allowableQualifiers | No | A container element listing zero or more allowable qualifiers for a thesaurus entry.
+creationYear | No | The year the thesaurus entry was created.
+note | No | Zero or more note elements compose the notes for the thesaurus entry.
+
+### Schema: head/term (Label type)
+
+Attribute | Required | Description
+--------- | -------- | -----------
+ord | No | This contains the ordinal value for the linked term when present.
+product | No | This is the thesaurus this term references when present.
+alt | No | This stores the non-English or alternative value for the term when present.
+tn | No | This stores the tree number in the thesaurus hierarchy for the term when present.
+
+### Schema: path
+
+Attribute | Required | Description
+--------- | -------- | -----------
+tn | No | This stores the tree number in the thesarus hierarchy for the path when present.
+
+Element | Required | Description
+------- | -------- | -----------
+term | No | Zero or more term elements defining a transition of broader to narrower terms (or the reverse).
