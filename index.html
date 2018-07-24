@@ -701,6 +701,25 @@ Remember — GET requests must still contain a correct Authorization header.
 <td>How many result terms to include in the response.  The platform service limit is very high or unlimited, we should probably consider how many we want to allow.</td>
 </tr>
 </tbody></table>
+<h3 id='schema-searchresponse'>Schema: searchResponse</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>totalHits</td>
+<td>Yes</td>
+<td>The number of thesaurus terms that match the query.</td>
+</tr>
+<tr>
+<td>resultSet</td>
+<td>No</td>
+<td>An element container for a number of thesaurus entries.</td>
+</tr>
+</tbody></table>
 <h2 id='obtain-specific-thesaurus-term'>Obtain specific thesaurus term</h2>
 <blockquote>
 <p>Response</p>
@@ -762,6 +781,147 @@ Remember — GET requests must still contain a correct Authorization header.
 <td>-</td>
 <td>Yes</td>
 <td>The exact name of a thesaurus head term.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-entry'>Schema: entry</h3>
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Yes</td>
+<td>An id element defining a compound unique identifier for the entry.</td>
+</tr>
+<tr>
+<td>head</td>
+<td>Yes</td>
+<td>A label defining the complete head phrase for the entry. (Label type)</td>
+</tr>
+<tr>
+<td>paths</td>
+<td>No</td>
+<td>A container element for multiple path elements.</td>
+</tr>
+<tr>
+<td>broader</td>
+<td>No</td>
+<td>A container element listing zero or more broader thesaurus terms as term elements.</td>
+</tr>
+<tr>
+<td>narrower</td>
+<td>No</td>
+<td>A container element listing zero or more narrower thesaurus terms as term elements.</td>
+</tr>
+<tr>
+<td>related</td>
+<td>No</td>
+<td>A container element listing zero or more related thesaurus terms as term elements.</td>
+</tr>
+<tr>
+<td>useFor</td>
+<td>No</td>
+<td>A container element listing zero or more thesaurus terms for which this entry should be used instead.</td>
+</tr>
+<tr>
+<td>use</td>
+<td>No</td>
+<td>A container element listing zero or more thesaurus terms that should be used instead of the current entry.</td>
+</tr>
+<tr>
+<td>scopeNote</td>
+<td>No</td>
+<td>Zero or more scopeNote elements compose the scope notes for a thesaurus entry.</td>
+</tr>
+<tr>
+<td>historicalNote</td>
+<td>No</td>
+<td>Zero or more historicalNote elements compose the historical notes for a thesaurus entry.</td>
+</tr>
+<tr>
+<td>classificationCode</td>
+<td>No</td>
+<td>Zero or more classificationCode elements define the classification codes for a thesaurus entry.</td>
+</tr>
+<tr>
+<td>editorialCode</td>
+<td>No</td>
+<td>Zero or more editorialCode elements define the editorial codes for a thesaurus entry.</td>
+</tr>
+<tr>
+<td>allowableQualifiers</td>
+<td>No</td>
+<td>A container element listing zero or more allowable qualifiers for a thesaurus entry.</td>
+</tr>
+<tr>
+<td>creationYear</td>
+<td>No</td>
+<td>The year the thesaurus entry was created.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>No</td>
+<td>Zero or more note elements compose the notes for the thesaurus entry.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-head-term-label-type'>Schema: head/term (Label type)</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ord</td>
+<td>No</td>
+<td>This contains the ordinal value for the linked term when present.</td>
+</tr>
+<tr>
+<td>product</td>
+<td>No</td>
+<td>This is the thesaurus this term references when present.</td>
+</tr>
+<tr>
+<td>alt</td>
+<td>No</td>
+<td>This stores the non-English or alternative value for the term when present.</td>
+</tr>
+<tr>
+<td>tn</td>
+<td>No</td>
+<td>This stores the tree number in the thesaurus hierarchy for the term when present.</td>
+</tr>
+</tbody></table>
+<h3 id='schema-path'>Schema: path</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tn</td>
+<td>No</td>
+<td>This stores the tree number in the thesarus hierarchy for the path when present.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Element</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>term</td>
+<td>No</td>
+<td>Zero or more term elements defining a transition of broader to narrower terms (or the reverse).</td>
 </tr>
 </tbody></table>
 <h1 id='limiters'>Limiters</h1>
