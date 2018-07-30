@@ -104,14 +104,14 @@ Search for any thesaurus terms that match the provided query.
 Parameter | Default | Required | Description
 --------- | ------- | -------- | -----------
 thesaurusName | - | Yes | A thesaurus name as discovered through the /thesaurus/fordatabases/{databaselist} endpoint.
-query | - | Yes | Description (need to figure out restrictions as well, special characters are likely not handled well)
+query | - | Yes | For beginswith: the entire head entry must begin with the query phrase.  For contains: the head entry must contain words that begin with each of the terms in the query.
 
 ### Query Parameters
 
 Parameter | Default | Required | Description
 --------- | ------- | -------- | -----------
 offset | 0 | No | How many result terms to skip in the search response. This facilitates paging through thesaurus term search results.
-count | 50? | No | How many result terms to include in the response.  The platform service limit is very high or unlimited, we should probably consider how many we want to allow.
+count | 200 | No | The maximum number of terms to include in the response.  The maximum limit is 200.  Result sets larger than 200 will require paging.
 
 ### Schema: searchResponse
 
