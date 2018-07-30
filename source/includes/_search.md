@@ -2,9 +2,38 @@
 
 The search endpoint allows searching for content on the ProQuest Dialog platform by specifying an MQL query.  The search API supports multiple search options and the same MQL syntax supported on the Dialog platform.  Each doc in a search response contains a Link field to the full document in XML format.
 
-## GET search results
+## Perform a search
 
-> Search response:
+> Request body:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<searchRequest>
+    <search>
+        <query>ti(test) or s1</query>
+        <databases>
+            <database>medlineprof</database>
+            <database>embase</database>
+        </databases>
+        <set id="1">
+            <query>mesh.#("ammonium chloride")</query>
+            <databases>
+                <database>medlineprof</medlineprof>
+            </databases>
+        </set>
+        <options>
+            <includeLemmatization>true</includeLemmatization>
+            <includeUsUkSpellingVariants>true</includeUsUkSpellingVariants>
+            <includeDuplicates>true</includeDuplicates>
+        </options>
+    </search>
+    <count>5</count>
+    <offset>20</offset>
+    <sortOrder>pubDateAscending</sortOrder>
+</searchRequest>
+```
+
+> Response body:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -42,63 +71,6 @@ The search endpoint allows searching for content on the ProQuest Dialog platform
     </result>
 </searchResponse>
 ```
-
-Search for content on ProQuest Dialog.
-
-### HTTP Request
-
-`GET /search`
-
-### Query Parameters
-
-Parameter | Default | Required | Description
---------- | ------- | -------- | -----------
-q | - | Yes | An MQL query used to perform a search.
-db | - | Yes | A comma delimited list of database codes to search (medlineprof,embase).  Your account must have authorization to use any database codes specified.
-count | 20 | No | The number of documents to return in a single request.  We only support scrolling 4000 documents into search results (count + offset <= 4000).
-offset | 0 | No | The number of documents to skip before returning search results.  This facilitates paging through search results without returning a large list of documents at a time. 
-sortOrder | pubDateDescending | No | The sort order to use in the results returned.  pubDateDescending - in descending order by publication date.  pubDateAscending - in ascending order by publication date.  relevance - in order of relevance to the query.
-s1 | - | No | Should contain the MQL query for a set reference.  Any set references can be included as query parameters (s1, s2, s231, etc).
-includeDuplicates | false | No | Specify whether or not to include duplicate documents in the results returned. (true/false)
-includeLemmatization | false | No | Specify whether to automatically search terms with the same lemmatized stem (read|reads|reading). (true/false)
-includeUsUkSpellingVariants | false | No | Specify whether to automatically search for US/UK spelling variations of the terms used in the query. (true/false)
-
-<aside class="success">
-Remember — GET requests must still contain a correct Authorization header.
-</aside>
-
-## POST search results
-
-> Request body:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<searchRequest>
-    <search>
-        <query>ti(test) or s1</query>
-        <databases>
-            <database>medlineprof</database>
-            <database>embase</database>
-        </databases>
-        <set id="1">
-            <query>mesh.#("ammonium chloride")</query>
-            <databases>
-                <database>medlineprof</medlineprof>
-            </databases>
-        </set>
-        <options>
-            <includeLemmatization>true</includeLemmatization>
-            <includeUsUkSpellingVariants>true</includeUsUkSpellingVariants>
-            <includeDuplicates>true</includeDuplicates>
-        </options>
-    </search>
-    <count>5</count>
-    <offset>20</offset>
-    <sortOrder>pubDateAscending</sortOrder>
-</searchRequest>
-```
-
-The preferred method for accessing the search API is to make a POST request.  This bypasses the maximum URL length imposed by some servers and browsers allowing for longer queries to be used.
 
 ### HTTP Request
 

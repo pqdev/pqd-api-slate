@@ -4,7 +4,6 @@ title: API Reference
 includes:
   - search
   - thesaurus
-  - limiters
   - errors
 
 search: true
