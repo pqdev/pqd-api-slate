@@ -1,6 +1,6 @@
 # Thesaurus
 
-The thesaurus endpoint allows for the discovery of available thesauri for databases.  It allows searching the content of a thesaurus for preferred terms, synonyms, and thesaurus notes.
+The thesaurus endpoint allows for the discovery of available thesauri for databases.  It allows searching the content of a thesaurus to find preferred terms, synonyms, and thesaurus notes for thesaurus entries.
 
 ## Discover thesauri
 

@@ -108,6 +108,6 @@ databases | No | If included, a non-zero list of database elements each one cont
 
 Element | Default | Required | Description
 ------- | ------- | -------- | -----------
-includeLemmatization | false | No | Specify whether to automatically search terms with the same lemmatized stem (read|reads|reading). (true/false)
-includeUsUkSpellingVariants | false | No | Specify whether to automatically search for US/UK spelling variations of the terms used in the query. (true/false)
+includeLemmatization | false | No | Specify whether to automatically search terms with the same lemmatized stem (read,reads,reading). (true/false)
+includeUsUkSpellingVariants | false | No | Specify whether to automatically search for US/UK spelling variations of the terms used in the query (color,colour). (true/false)
 includeDuplicates | false | No | Specify whether or not to include duplicate documents in the results returned. (true/false)
