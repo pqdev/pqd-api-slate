@@ -11,7 +11,7 @@ search: true
 
 # Introduction
 
-Welcome to the ProQuest Dialog API! You can use our API to search for content, access content, and manage alerts on our platform.
+Welcome to the ProQuest Dialog API! You can use our API to search for content, access content, explore thesauri, and manage alerts on our platform.
 
 # Authentication
 
