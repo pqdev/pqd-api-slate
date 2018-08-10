@@ -8,6 +8,7 @@ HTTP Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request is invalid.
 401 | Unauthorized -- Your bearer token is unspecified or invalid.
+403 | Forbidden -- Your bearer token is unspecified or invalid.
 404 | Not Found -- The specified resource could not be found. Possibly an invalid thesaurus name or alert id.
 405 | Method Not Allowed -- You tried to access an endpoint with an invalid method.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
@@ -28,14 +29,14 @@ HTTP Code | Meaning
 </error>
 ```
 
-An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.
+An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured error defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.
 
 ### Schema: error
 
 Element | Description
 ------- | -----------
 debugMessage | A human readable hint to the problem.  This could be specific or generic.  It is not intended to fully identify the problem or be consumed by users.
-errorCode | Numeric error code as listed above.
+errorCode | Numeric error code as listed below.
 parameters | If present, a list of param elements that contain a name attribute and a value.  These describe any actual details of the semantic error.
 
 ## Structured Error Codes
