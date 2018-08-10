@@ -857,6 +857,10 @@ Remember — GET requests must still contain a correct Authorization header.
 <td>Unauthorized -- Your bearer token is unspecified or invalid.</td>
 </tr>
 <tr>
+<td>403</td>
+<td>Forbidden -- Your bearer token is unspecified or invalid.</td>
+</tr>
+<tr>
 <td>404</td>
 <td>Not Found -- The specified resource could not be found. Possibly an invalid thesaurus name or alert id.</td>
 </tr>
@@ -886,7 +890,7 @@ Remember — GET requests must still contain a correct Authorization header.
     <span class="nt">&lt;/parameters&gt;</span>
 <span class="nt">&lt;/error&gt;</span>
 </code></pre>
-<p>An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.</p>
+<p>An HTTP code of 400 (bad request) may contain either semantic or XML/structural errors.  For many semantic errors, the body of the response will contain a structured error defining what is wrong in a way that could be programmatically reported back to a user more easily with some interpretation.</p>
 <h3 id='schema-error'>Schema: error</h3>
 <table><thead>
 <tr>
@@ -900,7 +904,7 @@ Remember — GET requests must still contain a correct Authorization header.
 </tr>
 <tr>
 <td>errorCode</td>
-<td>Numeric error code as listed above.</td>
+<td>Numeric error code as listed below.</td>
 </tr>
 <tr>
 <td>parameters</td>
